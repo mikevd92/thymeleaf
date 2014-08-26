@@ -1,0 +1,470 @@
+@startuml
+abstract class model.Place_
+abstract class model.Play_
+abstract class model.User_
+abstract class persistence.JpaDAO
+annotation ComponentScan.Filter
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+annotation javax.annotation.Generated
+annotation javax.persistence.Basic
+annotation javax.persistence.Column
+annotation javax.persistence.Entity
+annotation javax.persistence.GeneratedValue
+annotation javax.persistence.Id
+annotation javax.persistence.JoinColumn
+annotation javax.persistence.ManyToOne
+annotation javax.persistence.NamedQueries
+annotation javax.persistence.NamedQuery
+annotation javax.persistence.OneToMany
+annotation javax.persistence.PersistenceContext
+annotation javax.persistence.Table
+annotation javax.persistence.Temporal
+annotation javax.persistence.metamodel.StaticMetamodel
+annotation javax.validation.Valid
+annotation javax.validation.constraints.NotNull
+annotation javax.validation.constraints.Size
+annotation org.springframework.beans.factory.annotation.Autowired
+annotation org.springframework.beans.factory.annotation.Value
+annotation org.springframework.cache.annotation.CacheEvict
+annotation org.springframework.cache.annotation.Cacheable
+annotation org.springframework.context.annotation.Bean
+annotation org.springframework.context.annotation.ComponentScan
+annotation org.springframework.context.annotation.Configuration
+annotation org.springframework.context.annotation.Import
+annotation org.springframework.context.annotation.Scope
+annotation org.springframework.format.annotation.DateTimeFormat
+annotation org.springframework.scheduling.annotation.EnableScheduling
+annotation org.springframework.stereotype.Controller
+annotation org.springframework.stereotype.Repository
+annotation org.springframework.stereotype.Service
+annotation org.springframework.transaction.annotation.EnableTransactionManagement
+annotation org.springframework.transaction.annotation.Transactional
+annotation org.springframework.web.bind.annotation.ExceptionHandler
+annotation org.springframework.web.bind.annotation.ModelAttribute
+annotation org.springframework.web.bind.annotation.PathVariable
+annotation org.springframework.web.bind.annotation.RequestBody
+annotation org.springframework.web.bind.annotation.RequestMapping
+annotation org.springframework.web.bind.annotation.ResponseBody
+annotation org.springframework.web.servlet.config.annotation.EnableWebMvc
+annotation org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker
+class com.fasterxml.jackson.databind.ObjectMapper
+class configuration.PersistenceConfig
+class configuration.ServiceConfig
+class configuration.WebConfig
+class configuration.WebInitializer
+class configuration.WebSocketConfig
+class controller.LoginController
+class controller.ManagerController
+class controller.SignUpController
+class controller.UserController
+class exceptions.AppException
+class java.lang.RuntimeException
+class java.lang.reflect.ParameterizedType
+class java.sql.Date
+class java.sql.Time
+class java.util.ArrayList
+class java.util.Collection
+class java.util.Date
+class java.util.HashSet
+class java.util.List
+class java.util.Locale
+class java.util.Objects
+class java.util.Optional
+class java.util.Stack
+class java.util.function.Predicate
+class java.util.stream.Collectors
+class java.util.stream.IntStream
+class javax.persistence.EntityManager
+class javax.persistence.FetchType
+class javax.persistence.GenerationType
+class javax.persistence.NoResultException
+class javax.persistence.Query
+class javax.persistence.TemporalType
+class javax.persistence.TypedQuery
+class javax.persistence.criteria.CriteriaBuilder
+class javax.persistence.criteria.CriteriaQuery
+class javax.persistence.criteria.Root
+class javax.persistence.metamodel.ListAttribute
+class javax.persistence.metamodel.SingularAttribute
+class javax.servlet.Filter
+class javax.servlet.ServletContext
+class javax.servlet.ServletException
+class javax.servlet.ServletRegistration
+class javax.servlet.http.HttpServletRequest
+class javax.servlet.http.HttpSession
+class javax.sql.DataSource
+class model.Place
+class model.Play
+class model.User
+class org.apache.commons.dbcp.BasicDataSource
+class org.directwebremoting.annotations.AnnotationsConfigurator
+class org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
+class org.springframework.cache.concurrent.ConcurrentMapCache
+class org.springframework.cache.support.SimpleCacheManager
+class org.springframework.context.annotation.FilterType
+class org.springframework.core.io.ClassPathResource
+class org.springframework.http.MediaType
+class org.springframework.messaging.MessagingException
+class org.springframework.messaging.simp.SimpMessagingTemplate
+class org.springframework.messaging.simp.config.ChannelRegistration
+class org.springframework.messaging.simp.config.MessageBrokerRegistry
+class org.springframework.orm.jpa.JpaTransactionManager
+class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+class org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager
+class org.springframework.orm.jpa.persistenceunit.PersistenceUnitManager
+class org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
+class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+class org.springframework.transaction.annotation.Propagation
+class org.springframework.validation.BindingResult
+class org.springframework.web.accept.ContentNegotiationManager
+class org.springframework.web.bind.annotation.RequestMethod
+class org.springframework.web.context.request.RequestContextListener
+class org.springframework.web.filter.CharacterEncodingFilter
+class org.springframework.web.filter.HiddenHttpMethodFilter
+class org.springframework.web.filter.RequestContextFilter
+class org.springframework.web.servlet.ModelAndView
+class org.springframework.web.servlet.View
+class org.springframework.web.servlet.ViewResolver
+class org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer
+class org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer
+class org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+class org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+class org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
+class org.springframework.web.servlet.view.ContentNegotiatingViewResolver
+class org.springframework.web.servlet.view.InternalResourceViewResolver
+class org.springframework.web.servlet.view.JstlView
+class org.springframework.web.servlet.view.json.MappingJackson2JsonView
+class org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer
+class org.springframework.web.socket.config.annotation.StompEndpointRegistry
+class persistence.JpaPlaceDAO
+class persistence.JpaPlayDAO
+class persistence.JpaUserDAO
+class service.DefaultUserService
+interface java.io.Serializable
+interface persistence.DAO
+interface persistence.PlaceDAO
+interface persistence.PlayDAO
+interface persistence.UserDAO
+interface service.UserService
+model.Place_ ..> javax.annotation.Generated
+model.Place_ ..> javax.persistence.metamodel.StaticMetamodel
+model.Place_ ..> javax.persistence.metamodel.SingularAttribute
+model.Play_ ..> javax.annotation.Generated
+model.Play_ ..> javax.persistence.metamodel.StaticMetamodel
+model.Play_ ..> java.sql.Date
+model.Play_ ..> java.sql.Time
+model.Play_ ..> javax.persistence.metamodel.ListAttribute
+model.Play_ ..> javax.persistence.metamodel.SingularAttribute
+model.User_ ..> javax.annotation.Generated
+model.User_ ..> javax.persistence.metamodel.StaticMetamodel
+model.User_ ..> java.sql.Date
+model.User_ ..> javax.persistence.metamodel.ListAttribute
+model.User_ ..> javax.persistence.metamodel.SingularAttribute
+persistence.JpaDAO ..> java.lang.SuppressWarnings
+persistence.JpaDAO ..> javax.persistence.PersistenceContext
+persistence.JpaDAO ..> org.springframework.transaction.annotation.Transactional
+persistence.JpaDAO ..> exceptions.AppException
+persistence.JpaDAO ..> java.lang.reflect.ParameterizedType
+persistence.JpaDAO ..> java.util.List
+persistence.JpaDAO ..> javax.persistence.EntityManager
+persistence.JpaDAO ..> javax.persistence.TypedQuery
+persistence.JpaDAO ..> javax.persistence.criteria.CriteriaBuilder
+persistence.JpaDAO ..> javax.persistence.criteria.CriteriaQuery
+persistence.JpaDAO ..> javax.persistence.criteria.Root
+persistence.JpaDAO ..> org.springframework.transaction.annotation.Propagation
+persistence.JpaDAO --|> persistence.DAO
+configuration.PersistenceConfig ..> ComponentScan.Filter
+configuration.PersistenceConfig ..> org.springframework.beans.factory.annotation.Value
+configuration.PersistenceConfig ..> org.springframework.context.annotation.Bean
+configuration.PersistenceConfig ..> org.springframework.context.annotation.ComponentScan
+configuration.PersistenceConfig ..> org.springframework.context.annotation.Configuration
+configuration.PersistenceConfig ..> org.springframework.transaction.annotation.EnableTransactionManagement
+configuration.PersistenceConfig ..> java.util.Collection
+configuration.PersistenceConfig ..> java.util.HashSet
+configuration.PersistenceConfig ..> javax.sql.DataSource
+configuration.PersistenceConfig ..> org.apache.commons.dbcp.BasicDataSource
+configuration.PersistenceConfig ..> org.springframework.cache.concurrent.ConcurrentMapCache
+configuration.PersistenceConfig ..> org.springframework.cache.support.SimpleCacheManager
+configuration.PersistenceConfig ..> org.springframework.context.annotation.FilterType
+configuration.PersistenceConfig ..> org.springframework.orm.jpa.JpaTransactionManager
+configuration.PersistenceConfig ..> org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+configuration.PersistenceConfig ..> org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager
+configuration.PersistenceConfig ..> org.springframework.orm.jpa.persistenceunit.PersistenceUnitManager
+configuration.PersistenceConfig ..> org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+configuration.ServiceConfig ..> ComponentScan.Filter
+configuration.ServiceConfig ..> org.springframework.context.annotation.Bean
+configuration.ServiceConfig ..> org.springframework.context.annotation.ComponentScan
+configuration.ServiceConfig ..> org.springframework.context.annotation.Configuration
+configuration.ServiceConfig ..> org.springframework.context.annotation.Import
+configuration.ServiceConfig ..> org.springframework.transaction.annotation.EnableTransactionManagement
+configuration.ServiceConfig --|> org.directwebremoting.annotations.AnnotationsConfigurator
+configuration.ServiceConfig ..> org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
+configuration.ServiceConfig ..> org.springframework.context.annotation.FilterType
+configuration.ServiceConfig ..> org.springframework.core.io.ClassPathResource
+configuration.ServiceConfig ..> org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
+configuration.WebConfig ..> ComponentScan.Filter
+configuration.WebConfig ..> java.lang.Override
+configuration.WebConfig ..> org.springframework.context.annotation.Bean
+configuration.WebConfig ..> org.springframework.context.annotation.ComponentScan
+configuration.WebConfig ..> org.springframework.context.annotation.Configuration
+configuration.WebConfig ..> org.springframework.context.annotation.Scope
+configuration.WebConfig ..> org.springframework.transaction.annotation.EnableTransactionManagement
+configuration.WebConfig ..> org.springframework.web.servlet.config.annotation.EnableWebMvc
+configuration.WebConfig ..> controller.LoginController
+configuration.WebConfig ..> controller.ManagerController
+configuration.WebConfig ..> controller.SignUpController
+configuration.WebConfig ..> controller.UserController
+configuration.WebConfig ..> java.util.ArrayList
+configuration.WebConfig ..> java.util.List
+configuration.WebConfig ..> java.util.Locale
+configuration.WebConfig ..> org.springframework.context.annotation.FilterType
+configuration.WebConfig ..> org.springframework.http.MediaType
+configuration.WebConfig ..> org.springframework.web.accept.ContentNegotiationManager
+configuration.WebConfig ..> org.springframework.web.context.request.RequestContextListener
+configuration.WebConfig ..> org.springframework.web.servlet.View
+configuration.WebConfig ..> org.springframework.web.servlet.ViewResolver
+configuration.WebConfig ..> org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer
+configuration.WebConfig ..> org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer
+configuration.WebConfig ..> org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+configuration.WebConfig --|> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+configuration.WebConfig ..> org.springframework.web.servlet.view.ContentNegotiatingViewResolver
+configuration.WebConfig ..> org.springframework.web.servlet.view.InternalResourceViewResolver
+configuration.WebConfig ..> org.springframework.web.servlet.view.JstlView
+configuration.WebConfig ..> org.springframework.web.servlet.view.json.MappingJackson2JsonView
+configuration.WebInitializer ..> java.lang.Override
+configuration.WebInitializer ..> javax.servlet.Filter
+configuration.WebInitializer ..> javax.servlet.ServletContext
+configuration.WebInitializer ..> javax.servlet.ServletException
+configuration.WebInitializer ..> javax.servlet.ServletRegistration
+configuration.WebInitializer ..> org.springframework.web.filter.CharacterEncodingFilter
+configuration.WebInitializer ..> org.springframework.web.filter.HiddenHttpMethodFilter
+configuration.WebInitializer ..> org.springframework.web.filter.RequestContextFilter
+configuration.WebInitializer --|> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
+configuration.WebSocketConfig ..> java.lang.Override
+configuration.WebSocketConfig ..> org.springframework.context.annotation.Configuration
+configuration.WebSocketConfig ..> org.springframework.scheduling.annotation.EnableScheduling
+configuration.WebSocketConfig ..> org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker
+configuration.WebSocketConfig ..> org.springframework.messaging.simp.config.ChannelRegistration
+configuration.WebSocketConfig ..> org.springframework.messaging.simp.config.MessageBrokerRegistry
+configuration.WebSocketConfig --|> org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer
+configuration.WebSocketConfig ..> org.springframework.web.socket.config.annotation.StompEndpointRegistry
+controller.LoginController ..> javax.validation.Valid
+controller.LoginController ..> org.springframework.beans.factory.annotation.Autowired
+controller.LoginController ..> org.springframework.stereotype.Controller
+controller.LoginController ..> org.springframework.web.bind.annotation.ExceptionHandler
+controller.LoginController ..> org.springframework.web.bind.annotation.ModelAttribute
+controller.LoginController ..> org.springframework.web.bind.annotation.RequestMapping
+controller.LoginController ..> exceptions.AppException
+controller.LoginController ..> javax.servlet.http.HttpServletRequest
+controller.LoginController ..> javax.servlet.http.HttpSession
+controller.LoginController ..> model.User
+controller.LoginController ..> org.springframework.validation.BindingResult
+controller.LoginController ..> org.springframework.web.bind.annotation.RequestMethod
+controller.LoginController ..> org.springframework.web.servlet.ModelAndView
+controller.LoginController ..> service.UserService
+controller.ManagerController ..> javax.validation.Valid
+controller.ManagerController ..> org.springframework.beans.factory.annotation.Autowired
+controller.ManagerController ..> org.springframework.stereotype.Controller
+controller.ManagerController ..> org.springframework.web.bind.annotation.ModelAttribute
+controller.ManagerController ..> org.springframework.web.bind.annotation.RequestBody
+controller.ManagerController ..> org.springframework.web.bind.annotation.RequestMapping
+controller.ManagerController ..> org.springframework.web.bind.annotation.ResponseBody
+controller.ManagerController ..> com.fasterxml.jackson.databind.ObjectMapper
+controller.ManagerController ..> exceptions.AppException
+controller.ManagerController ..> java.sql.Date
+controller.ManagerController ..> java.sql.Time
+controller.ManagerController ..> java.util.List
+controller.ManagerController ..> java.util.Stack
+controller.ManagerController ..> java.util.function.Predicate
+controller.ManagerController ..> java.util.stream.Collectors
+controller.ManagerController ..> javax.servlet.http.HttpServletRequest
+controller.ManagerController ..> javax.servlet.http.HttpSession
+controller.ManagerController ..> model.Play
+controller.ManagerController ..> org.springframework.http.MediaType
+controller.ManagerController ..> org.springframework.messaging.MessagingException
+controller.ManagerController ..> org.springframework.messaging.simp.SimpMessagingTemplate
+controller.ManagerController ..> org.springframework.web.bind.annotation.RequestMethod
+controller.ManagerController ..> org.springframework.web.servlet.ModelAndView
+controller.ManagerController --|> java.io.Serializable
+controller.ManagerController ..> service.UserService
+controller.SignUpController ..> javax.validation.Valid
+controller.SignUpController ..> org.springframework.beans.factory.annotation.Autowired
+controller.SignUpController ..> org.springframework.stereotype.Controller
+controller.SignUpController ..> org.springframework.web.bind.annotation.ExceptionHandler
+controller.SignUpController ..> org.springframework.web.bind.annotation.ModelAttribute
+controller.SignUpController ..> org.springframework.web.bind.annotation.RequestMapping
+controller.SignUpController ..> exceptions.AppException
+controller.SignUpController ..> javax.servlet.http.HttpServletRequest
+controller.SignUpController ..> model.User
+controller.SignUpController ..> org.springframework.validation.BindingResult
+controller.SignUpController ..> org.springframework.web.bind.annotation.RequestMethod
+controller.SignUpController ..> org.springframework.web.servlet.ModelAndView
+controller.SignUpController ..> service.UserService
+controller.UserController ..> javax.validation.Valid
+controller.UserController ..> org.springframework.beans.factory.annotation.Autowired
+controller.UserController ..> org.springframework.stereotype.Controller
+controller.UserController ..> org.springframework.web.bind.annotation.ModelAttribute
+controller.UserController ..> org.springframework.web.bind.annotation.PathVariable
+controller.UserController ..> org.springframework.web.bind.annotation.RequestBody
+controller.UserController ..> org.springframework.web.bind.annotation.RequestMapping
+controller.UserController ..> org.springframework.web.bind.annotation.ResponseBody
+controller.UserController ..> exceptions.AppException
+controller.UserController ..> java.sql.Date
+controller.UserController ..> java.sql.Time
+controller.UserController ..> java.util.List
+controller.UserController ..> java.util.Stack
+controller.UserController ..> java.util.function.Predicate
+controller.UserController ..> java.util.stream.Collectors
+controller.UserController ..> javax.servlet.http.HttpServletRequest
+controller.UserController ..> javax.servlet.http.HttpSession
+controller.UserController ..> model.Place
+controller.UserController ..> model.Play
+controller.UserController ..> org.springframework.http.MediaType
+controller.UserController ..> org.springframework.messaging.MessagingException
+controller.UserController ..> org.springframework.messaging.simp.SimpMessagingTemplate
+controller.UserController ..> org.springframework.web.bind.annotation.RequestMethod
+controller.UserController ..> org.springframework.web.servlet.ModelAndView
+controller.UserController --|> java.io.Serializable
+controller.UserController ..> service.UserService
+exceptions.AppException --|> java.lang.RuntimeException
+exceptions.AppException --|> java.io.Serializable
+model.Place ..> java.lang.Override
+model.Place ..> javax.persistence.Basic
+model.Place ..> javax.persistence.Column
+model.Place ..> javax.persistence.Entity
+model.Place ..> javax.persistence.GeneratedValue
+model.Place ..> javax.persistence.Id
+model.Place ..> javax.persistence.JoinColumn
+model.Place ..> javax.persistence.ManyToOne
+model.Place ..> javax.persistence.NamedQueries
+model.Place ..> javax.persistence.NamedQuery
+model.Place ..> javax.persistence.Table
+model.Place ..> javax.validation.constraints.NotNull
+model.Place ..> javax.validation.constraints.Size
+model.Place ..> javax.persistence.GenerationType
+model.Place --|> java.io.Serializable
+model.Play ..> java.lang.Override
+model.Play ..> javax.persistence.Basic
+model.Play ..> javax.persistence.Column
+model.Play ..> javax.persistence.Entity
+model.Play ..> javax.persistence.GeneratedValue
+model.Play ..> javax.persistence.Id
+model.Play ..> javax.persistence.NamedQueries
+model.Play ..> javax.persistence.NamedQuery
+model.Play ..> javax.persistence.OneToMany
+model.Play ..> javax.persistence.Table
+model.Play ..> javax.validation.constraints.Size
+model.Play ..> java.sql.Date
+model.Play ..> java.sql.Time
+model.Play ..> java.util.List
+model.Play ..> java.util.Objects
+model.Play ..> javax.persistence.FetchType
+model.Play ..> javax.persistence.GenerationType
+model.Play --|> java.io.Serializable
+model.User ..> java.lang.Override
+model.User ..> javax.persistence.Basic
+model.User ..> javax.persistence.Column
+model.User ..> javax.persistence.Entity
+model.User ..> javax.persistence.GeneratedValue
+model.User ..> javax.persistence.Id
+model.User ..> javax.persistence.NamedQueries
+model.User ..> javax.persistence.NamedQuery
+model.User ..> javax.persistence.OneToMany
+model.User ..> javax.persistence.Table
+model.User ..> javax.persistence.Temporal
+model.User ..> javax.validation.constraints.NotNull
+model.User ..> javax.validation.constraints.Size
+model.User ..> org.springframework.format.annotation.DateTimeFormat
+model.User ..> java.util.Date
+model.User ..> java.util.List
+model.User ..> javax.persistence.GenerationType
+model.User ..> javax.persistence.TemporalType
+model.User --|> java.io.Serializable
+persistence.JpaPlaceDAO --|> persistence.JpaDAO
+persistence.JpaPlaceDAO ..> java.lang.Override
+persistence.JpaPlaceDAO ..> java.lang.SuppressWarnings
+persistence.JpaPlaceDAO ..> org.springframework.cache.annotation.CacheEvict
+persistence.JpaPlaceDAO ..> org.springframework.stereotype.Repository
+persistence.JpaPlaceDAO ..> org.springframework.transaction.annotation.Transactional
+persistence.JpaPlaceDAO ..> exceptions.AppException
+persistence.JpaPlaceDAO ..> java.util.List
+persistence.JpaPlaceDAO ..> java.util.Optional
+persistence.JpaPlaceDAO ..> java.util.stream.Collectors
+persistence.JpaPlaceDAO ..> java.util.stream.IntStream
+persistence.JpaPlaceDAO ..> javax.persistence.Query
+persistence.JpaPlaceDAO ..> model.Place
+persistence.JpaPlaceDAO ..> model.Play
+persistence.JpaPlaceDAO ..> model.User
+persistence.JpaPlaceDAO --|> persistence.PlaceDAO
+persistence.JpaPlayDAO ..> model.Play_
+persistence.JpaPlayDAO --|> persistence.JpaDAO
+persistence.JpaPlayDAO ..> java.lang.Override
+persistence.JpaPlayDAO ..> org.springframework.beans.factory.annotation.Autowired
+persistence.JpaPlayDAO ..> org.springframework.cache.annotation.CacheEvict
+persistence.JpaPlayDAO ..> org.springframework.cache.annotation.Cacheable
+persistence.JpaPlayDAO ..> org.springframework.stereotype.Repository
+persistence.JpaPlayDAO ..> org.springframework.transaction.annotation.Transactional
+persistence.JpaPlayDAO ..> exceptions.AppException
+persistence.JpaPlayDAO ..> java.sql.Date
+persistence.JpaPlayDAO ..> java.sql.Time
+persistence.JpaPlayDAO ..> java.util.List
+persistence.JpaPlayDAO ..> java.util.Optional
+persistence.JpaPlayDAO ..> javax.persistence.NoResultException
+persistence.JpaPlayDAO ..> javax.persistence.TypedQuery
+persistence.JpaPlayDAO ..> javax.persistence.criteria.CriteriaBuilder
+persistence.JpaPlayDAO ..> javax.persistence.criteria.CriteriaQuery
+persistence.JpaPlayDAO ..> javax.persistence.criteria.Root
+persistence.JpaPlayDAO ..> model.Place
+persistence.JpaPlayDAO ..> model.Play
+persistence.JpaPlayDAO --|> persistence.PlayDAO
+persistence.JpaUserDAO ..> model.User_
+persistence.JpaUserDAO --|> persistence.JpaDAO
+persistence.JpaUserDAO ..> java.lang.Override
+persistence.JpaUserDAO ..> org.springframework.cache.annotation.CacheEvict
+persistence.JpaUserDAO ..> org.springframework.cache.annotation.Cacheable
+persistence.JpaUserDAO ..> org.springframework.stereotype.Repository
+persistence.JpaUserDAO ..> org.springframework.transaction.annotation.Transactional
+persistence.JpaUserDAO ..> exceptions.AppException
+persistence.JpaUserDAO ..> javax.persistence.TypedQuery
+persistence.JpaUserDAO ..> javax.persistence.criteria.CriteriaBuilder
+persistence.JpaUserDAO ..> javax.persistence.criteria.CriteriaQuery
+persistence.JpaUserDAO ..> javax.persistence.criteria.Root
+persistence.JpaUserDAO ..> model.User
+persistence.JpaUserDAO --|> persistence.UserDAO
+service.DefaultUserService ..> java.lang.Override
+service.DefaultUserService ..> org.springframework.beans.factory.annotation.Autowired
+service.DefaultUserService ..> org.springframework.stereotype.Service
+service.DefaultUserService ..> org.springframework.transaction.annotation.Transactional
+service.DefaultUserService ..> exceptions.AppException
+service.DefaultUserService ..> java.util.List
+service.DefaultUserService ..> java.util.Optional
+service.DefaultUserService ..> java.util.stream.Collectors
+service.DefaultUserService ..> model.Place
+service.DefaultUserService ..> model.Play
+service.DefaultUserService ..> model.User
+service.DefaultUserService ..> persistence.PlaceDAO
+service.DefaultUserService ..> persistence.PlayDAO
+service.DefaultUserService ..> persistence.UserDAO
+service.DefaultUserService --|> service.UserService
+persistence.DAO ..> exceptions.AppException
+persistence.DAO ..> java.util.List
+persistence.PlaceDAO ..> exceptions.AppException
+persistence.PlaceDAO ..> java.util.List
+persistence.PlaceDAO ..> model.Place
+persistence.PlaceDAO ..> model.Play
+persistence.PlaceDAO ..> model.User
+persistence.PlayDAO ..> exceptions.AppException
+persistence.PlayDAO ..> java.sql.Date
+persistence.PlayDAO ..> java.sql.Time
+persistence.PlayDAO ..> java.util.List
+persistence.PlayDAO ..> model.Play
+persistence.UserDAO ..> exceptions.AppException
+persistence.UserDAO ..> model.User
+service.UserService ..> exceptions.AppException
+service.UserService ..> java.util.List
+service.UserService ..> model.Place
+service.UserService ..> model.Play
+service.UserService ..> model.User
+service.UserService --|> java.io.Serializable
+@enduml
