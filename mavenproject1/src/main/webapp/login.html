@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link type="text/css" media="all" href="../../resources/css/master.css" th:href="@{/resources/css/master.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/bootstrap-theme.css" th:href="@{/resources/css/bootstrap-theme.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/app.css" th:href="@{/resources/css/app.css}" rel="stylesheet" />
+        <title>Login</title>
+    </head>
+ <body> 
+     <div style="margin-left:30px;margin-right:30px;">
+     <h1>You're welcome to login</h1>
+     <div th:if="${param.logout}"><p style="color:greenyellow"> You have been logged out.</p> </div>
+     <div th:if="${param.error}" ><p style='color:red'> Invalid username or password.</p> </div> 
+         <form th:action="@{/login}" method="post"> 
+             <table>
+                 <tr>
+                    <td><label class="control-label"> User Name: <input type="text" name="username"/></label></td> 
+                 </tr>
+                 <tr>
+                    <td><label class="control-label"> Password: <input type="password" name="password"/> </label></td>
+                 </tr>
+             </table>
+             <table>
+                 <tr>
+                    <td><a href="#" th:href="@{/register}"><button class="btn-primary" type="button">Sign Up</button></a></td>
+                    <td><input class="btn-primary" type="submit" value="Sign In"/></td> 
+                 </tr>
+             </table>
+         </form>
+     </div>
+ </body>    
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link type="text/css" media="all" href="../../resources/css/master.css" th:href="@{/resources/css/master.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/bootstrap-theme.css" th:href="@{/resources/css/bootstrap-theme.css}" rel="stylesheet" />
+        <link type="text/css" media="all" href="../../resources/css/app.css" th:href="@{/resources/css/app.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+        <title>Manager</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+        <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+        <script src="../../resources/js/stomp.js" th:src="@{/resources/js/stomp.js}" />
+        <script src="../../resources/js/web.js" th:src="@{/resources/js/web.js}" />  
+    </head>
+    <body>
+        <table style="float:right;padding-top:30px;margin-top:30px;margin-right: 30px">
+            <tr>
+                <td><button class="btn" onclick="signOut()" type="button">Sign out</button></td>
+            </tr>
+        </table>
+        <div style="margin-left:30px;margin-right:30px">
+            <h1 style="margin-top:-10px">List of Theater Plays</h1>
+            <div id="playDiv">
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                            <tr th:each="play : ${plays}" th:id="${play.idPlay}" th:onclick="'javascript:fill(\'' + ${play.idPlay} + '\');'" >
+                                <td style ="display:none" th:text="${play.idPlay}" />
+                                <td th:text="${play.playName}" />
+                                <td th:text="${play.startDate}" />
+                                <td th:text="${play.startTime}" />
+                                <td th:text="${play.endTime}" />
+                                <td th:text="${play.ticketPrice}" />
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color:red;">Please select a play by clicking on a table entry!</p>
+            <div style="float:left;">
+                <div id="errorDiv"></div>
+                <form th:object="${play}" >
+                    <table style="border-collapse:collapse;">
+                                <tr>
+                                    <td><input type="hidden" id="idPlay" th:field="*{idPlay}" /></td>   
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="playName">Name:</label></td>
+                                    <td><input id="playName" th:field="*{playName}" /></td> 
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="startTime">Start Time:</label></td>
+                                    <td><input id="startTime" th:field="*{startTime}" placeholder="hh:mm:ss"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="endTime">End Time:</label></td>
+                                    <td><input id="endTime" th:field="*{endTime}" placeholder="hh:mm:ss"/></td> 
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="startDate">Start Date:</label></td>
+                                    <td><input id="startDate" th:field="*{startDate}" placeholder="YYYY-MM-DD" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="ticketPrice">Ticket Price:</label></td>
+                                    <td><input id="ticketPrice" th:field="*{ticketPrice}" /></td>
+                                </tr>
+                            </table>
+                </form>
+                 <table style="border-collapse:collapse;margin-top:12px">
+                            <tr>
+                                <td><input class="btn-primary" type="button" onclick="filter()" value="filter" /></td>
+                                <td><input class="btn-primary" type="button" onclick="undo()" value="undo" /></td>
+                            </tr>
+                 </table>
+            </div>
+            <div style="float:left;margin-left:30px;margin-right:30px;float:bottom">
+                <table style="border-collapse:collapse;margin-top:12px">
+                    <tr>
+                        <td><input class="btn-primary" type="button" onclick="add()" value="Add" /></td>
+                    </tr>
+                    <tr>
+                        <td><input class="btn-primary" type="button" onclick="edit()" value="Edit" /></td>
+                    </tr>
+                    <tr>
+                        <td><input class="btn-primary" type="button" onclick="rem()" value="Delete" /></td>    
+                    </tr>
+                     <tr>
+                        <td><input class="btn-primary" type="button" onclick="unfill()" value="clear" /></td>
+                    </tr>
+                </table>
+            </div> 
+        </div>
+    </body>
+</html>
