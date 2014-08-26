@@ -40,8 +40,7 @@ stompSecondClient.connect({}, function(frame) {
             if (content.notify === 'succes') {
                 if (parseInt(content.id) == id_play){
                     refresh();
-                }
-                
+                }     
             }
         } catch (e) {
             console.log("Socket Error Client 2" + e);
