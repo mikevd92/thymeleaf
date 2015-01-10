@@ -6,6 +6,7 @@
 var id_play = -1;
 var socket = new SockJS('/mavenproject1/end');
 var stompClient = Stomp.over(socket);
+var root = "http://localhost:8084/mavenproject1/";
 
 stompClient.connect({}, function(frame) {
     console.log('Connected First client: ' + frame);
@@ -51,7 +52,7 @@ stompSecondClient.connect({}, function(frame) {
 function refreshPlays() {
     $.ajax({
         type: "POST",
-        url: "http://localhost:8084/mavenproject1/play/list/refresh",
+        url: root+"play/list/refresh",
         data: "",
         headers: {
             'Accept': 'text/html',
@@ -98,7 +99,7 @@ function fill(id) {
     if ($('#placeDiv').length > 0) {
         $.ajax({
             type: "PUT",
-            url: "http://localhost:8084/mavenproject1/seat/list/id/" + id + "",
+            url: root+"seat/list/id/" + id + "",
             data: "",
             headers: {
                 'Accept': 'text/html',
@@ -185,7 +186,7 @@ function filter() {
     json = json.concat("}");
     $.ajax({
         type: "POST",
-        url: "http://localhost:8084/mavenproject1/play/list/filter",
+        url: root+"play/list/filter",
         data: json,
         headers: {
             'Accept': 'application/json',
@@ -226,7 +227,7 @@ function add() {
     var json = {"playName": playName, "startDate": startDate, "startTime": startTime, "endTime": endTime, "ticketPrice": ticketPrice};
     $.ajax({
         type: "POST",
-        url: "http://localhost:8084/mavenproject1/play/list",
+        url: root+"play/list",
         data: JSON.stringify(json),
         headers: {
             'Accept': 'application/json',
@@ -254,7 +255,7 @@ function refresh() {
     if (id !== -1) {
         $.ajax({
             type: "PUT",
-            url: "http://localhost:8084/mavenproject1/seat/list/id/" + id + "",
+            url: root+"seat/list/id/" + id + "",
             data: "",
             headers: {
                 'Accept': 'text/html',
@@ -282,7 +283,7 @@ function reserve(id, availability) {
     var available = availability;
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8084/mavenproject1/seat/list/id/" + id_place + "/availability/" + available + "/name/" + name,
+        url: root+"seat/list/id/" + id_place + "/availability/" + available + "/name/" + name,
         data: "",
         headers: {
             'Accept': 'text/html',
@@ -308,7 +309,7 @@ function cancel(id, availability) {
     var available = availability;
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8084/mavenproject1/seat/list/cancel/id/" + id_place + "/availability/" + available + "/name/" + name,
+        url: root+"seat/list/cancel/id/" + id_place + "/availability/" + available + "/name/" + name,
         data: "",
         headers: {
             'Accept': 'text/html',
@@ -333,7 +334,7 @@ function hide() {
     // get the form values
     $.ajax({
         type: "POST",
-        url: "http://localhost:8084/mavenproject1/seat/list/hide",
+        url: root+"seat/list/hide",
         data: "",
         headers: {
             'Accept': 'text/html',
@@ -404,7 +405,7 @@ function edit() {
     json = json.concat("}");
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8084/mavenproject1/play/list",
+        url: root+"play/list",
         data: json,
         headers: {
             'Accept': 'application/json',
@@ -432,7 +433,7 @@ function rem() {
     var json = {"idPlay": id};
     $.ajax({
         type: "DELETE",
-        url: "http://localhost:8084/mavenproject1/play/list",
+        url: root+"play/list",
         data: JSON.stringify(json),
         headers: {
             'Accept': 'application/json',
@@ -457,7 +458,7 @@ function undo() {
     // get the form values
     $.ajax({
         type: "POST",
-        url: "http://localhost:8084/mavenproject1/play/list/undo",
+        url: root+"play/list/undo",
         data: "",
         headers: {
             'Accept': 'text/html',
@@ -477,6 +478,6 @@ function undo() {
 }
 function signOut() {
     disconnect();
-    var url = "http://localhost:8084/mavenproject1/logout";
+    var url = root+"logout";
     $(location).attr('href', url);
 }
