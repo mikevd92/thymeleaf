@@ -6,7 +6,7 @@
 var id_play = -1;
 var socket = new SockJS('/mavenproject1/end');
 var stompClient = Stomp.over(socket);
-var root = "http://localhost:8084/mavenproject1/";
+var root = "http://beastviz.ddns.net:8084/mavenproject1/";
 
 stompClient.connect({}, function(frame) {
     console.log('Connected First client: ' + frame);
