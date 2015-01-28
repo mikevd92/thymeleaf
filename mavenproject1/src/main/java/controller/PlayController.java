@@ -195,8 +195,7 @@ public class PlayController implements Serializable {
     }
 
     @RequestMapping(value = "list/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    JSONResponse filter(@Valid @RequestBody Play play,Errors errors) {
+    public @ResponseBody JSONResponse filter(@Valid @RequestBody Play play,Errors errors) {
         String response;
         if(!errors.hasErrors()){
         try {
