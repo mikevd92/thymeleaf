@@ -81,51 +81,51 @@ public class PlayController implements Serializable {
 
     @RequestMapping(value = "/list", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    JSONResponse addPlay(@Valid @RequestBody Play play,Errors errors) {
+    JSONResponse addPlay(@Valid @RequestBody Play play, Errors errors) {
         String response;
-        if(!errors.hasErrors()){
-        try {
-            userService.addPlay(play);
-            response = "{\"notify\":\"succes\"}";
-            template.convertAndSend("/channel/plays", response);
-            response = "succes";
-            return new JSONResponse("succes",response);
-        } catch (AppException | MessagingException e) {
-            response = "Exception:" + e.getMessage();
-            return new JSONResponse("error",response);
-        }
-        }else{
-            return new JSONResponse("error",utils.convertErrorsToHtml(errors.getAllErrors()));
+        if (!errors.hasErrors()) {
+            try {
+                userService.addPlay(play);
+                response = "{\"notify\":\"succes\"}";
+                template.convertAndSend("/channel/plays", response);
+                response = "succes";
+                return new JSONResponse("succes", response);
+            } catch (AppException | MessagingException e) {
+                response = "Exception:" + e.getMessage();
+                return new JSONResponse("error", response);
+            }
+        } else {
+            return new JSONResponse("error", utils.convertErrorsToHtml(errors.getAllErrors()));
         }
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    JSONResponse editPlay(@Valid @RequestBody Play play,Errors errors) throws AppException {
+    JSONResponse editPlay(@Valid @RequestBody Play play, Errors errors) throws AppException {
         String response;
-        if(!errors.hasErrors()){
-        ResponseEntity entity=new ResponseEntity(errors,HttpStatus.BAD_REQUEST);
-        try {
-            userService.updatePlay(play);
-            int id_play = play.getIdPlay();
-            response = "{\"notify\":\"succes\",\"id\":\"" + id_play + "\"}";
-            template.convertAndSend("/channel/plays", response);
-            response = "succes";
-            return new JSONResponse("succes",response);
-        } catch (AppException | MessagingException e) {
-            response = "Exception:" + e.getMessage();
-            return new JSONResponse("error",response);
-        }
-        }else{
-            return new JSONResponse("error",utils.convertErrorsToHtml(errors.getAllErrors()));
+        if (!errors.hasErrors()) {
+            ResponseEntity entity = new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
+            try {
+                userService.updatePlay(play);
+                int id_play = play.getIdPlay();
+                response = "{\"notify\":\"succes\",\"id\":\"" + id_play + "\"}";
+                template.convertAndSend("/channel/plays", response);
+                response = "succes";
+                return new JSONResponse("succes", response);
+            } catch (AppException | MessagingException e) {
+                response = "Exception:" + e.getMessage();
+                return new JSONResponse("error", response);
+            }
+        } else {
+            return new JSONResponse("error", utils.convertErrorsToHtml(errors.getAllErrors()));
         }
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    JSONResponse removePlay(@Valid @RequestBody Play play,Errors errors) {
+    JSONResponse removePlay(@Valid @RequestBody Play play, Errors errors) {
         String response;
-        if(!errors.hasErrors()){
+        if (!errors.hasErrors()) {
             try {
                 userService.removePlay(play.getIdPlay());
                 if (Objects.equals(currentPlay.getIdPlay(), play.getIdPlay())) {
@@ -135,13 +135,13 @@ public class PlayController implements Serializable {
                 response = "{\"notify\":\"delete\",\"id\":\"" + id_play + "\"}";
                 template.convertAndSend("/channel/plays", response);
                 response = "succes";
-                return new JSONResponse("succes",response);
+                return new JSONResponse("succes", response);
             } catch (AppException | MessagingException e) {
                 response = "Exception:" + e.getMessage();
-                return new JSONResponse("error",response);
+                return new JSONResponse("error", response);
             }
-        }else{
-            return new JSONResponse("error",utils.convertErrorsToHtml(errors.getAllErrors()));
+        } else {
+            return new JSONResponse("error", utils.convertErrorsToHtml(errors.getAllErrors()));
         }
     }
 
@@ -149,13 +149,13 @@ public class PlayController implements Serializable {
     public @ResponseBody
     String refresh() {
         List<Play> plays = null;
-       if (currentPlay.getPlayName() != null && currentPlay.getStartTime() != null && currentPlay.getStartTime() != null && currentPlay.getEndTime() != null && currentPlay.getStartDate() != null && currentPlay.getTicketPrice() != 0) {
+        if (currentPlay.getPlayName() != null && currentPlay.getStartTime() != null && currentPlay.getStartTime() != null && currentPlay.getEndTime() != null && currentPlay.getStartDate() != null && currentPlay.getTicketPrice() != 0) {
             Play play = userService.getPlay(currentPlay.getIdPlay());
-                currentPlay.setPlayName(play.getPlayName());
-                currentPlay.setStartTime(play.getStartTime());
-                currentPlay.setEndTime(play.getEndTime());
-                currentPlay.setStartDate(play.getStartDate());
-                currentPlay.setTicketPrice(play.getTicketPrice());
+            currentPlay.setPlayName(play.getPlayName());
+            currentPlay.setStartTime(play.getStartTime());
+            currentPlay.setEndTime(play.getEndTime());
+            currentPlay.setStartDate(play.getStartDate());
+            currentPlay.setTicketPrice(play.getTicketPrice());
         }
         String response;
         try {
@@ -195,27 +195,28 @@ public class PlayController implements Serializable {
     }
 
     @RequestMapping(value = "list/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JSONResponse filter(@Valid @RequestBody Play play,Errors errors) {
+    public @ResponseBody
+    JSONResponse filter(@Valid @RequestBody Play play, Errors errors) {
         String response;
-        if(!errors.hasErrors()){
-        try {
-            changes.add(currentPlay);
-            currentPlay = play;
-            List<Play> plays = filterPlays(currentPlay, userService.loadPlays());
-            if (plays != null) {
-                response = utils.convertPlaysToHtml(plays);
-                return new JSONResponse("success",response);
-            }else{
-                currentPlay = changes.pop();
-                response = "No such elements!";
-                return new JSONResponse("error",response);
+        if (!errors.hasErrors()) {
+            try {
+                changes.add(currentPlay);
+                currentPlay = play;
+                List<Play> plays = filterPlays(currentPlay, userService.loadPlays());
+                if (plays != null) {
+                    response = utils.convertPlaysToHtml(plays);
+                    return new JSONResponse("success", response);
+                } else {
+                    currentPlay = changes.pop();
+                    response = "No such elements!";
+                    return new JSONResponse("error", response);
+                }
+            } catch (AppException e) {
+                response = "Exception:" + e.getMessage();
+                return new JSONResponse("error", response);
             }
-        } catch (AppException e) {
-            response = "Exception:" + e.getMessage();
-            return new JSONResponse("error",response);
-        }
-        }else{
-            return new JSONResponse("error",utils.convertErrorsToHtml(errors.getAllErrors()));
+        } else {
+            return new JSONResponse("error", utils.convertErrorsToHtml(errors.getAllErrors()));
         }
     }
 
@@ -223,7 +224,7 @@ public class PlayController implements Serializable {
         Predicate<Play> selector = p -> p != null;
         String playName = play.getPlayName();
         Integer ticketPrice = play.getTicketPrice();
-        if (playName!=null&&!playName.equals("")) {
+        if (playName != null && !playName.equals("")) {
             selector = selector.and(p -> p.getPlayName().equals(playName));
         }
         if (play.getStartTime() != null) {
@@ -252,10 +253,10 @@ public class PlayController implements Serializable {
             return null;
         }
     }
-    
+
     @ExceptionHandler(HttpSessionRequiredException.class)
-    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason="The session has expired")	
-    public String handleSessionExpired(){		
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "The session has expired")
+    public String handleSessionExpired() {
         return "sessionExpired";
     }
 }

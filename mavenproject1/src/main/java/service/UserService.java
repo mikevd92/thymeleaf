@@ -28,7 +28,7 @@ public interface UserService extends Serializable {
     public void removePlay(int index) throws AppException;
 
     public void updatePlay(Play play) throws AppException;
-    
+
     public User loadUserByName(String name);
 
     public String getPlaceName(int index) throws AppException;

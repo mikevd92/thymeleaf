@@ -4,7 +4,7 @@ import exceptions.AppException;
 import java.io.Serializable;
 import model.User;
 
-public interface UserDAO extends Serializable{
+public interface UserDAO extends Serializable {
 
     User findUserByNameAndPass(String name, String pass) throws AppException;
 

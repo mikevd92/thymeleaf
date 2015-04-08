@@ -13,27 +13,27 @@ and open the template in the editor.
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <title>Login</title>
     </head>
- <body> 
-     <div style="margin-left:30px;margin-right:30px;">
-     <h1>You're welcome to login</h1>
-     <div th:if="${param.logout}"><p style="color:greenyellow"> You have been logged out.</p> </div>
-     <div th:if="${param.error}" ><p style='color:red'> Invalid username or password.</p> </div> 
-         <form th:action="@{/login}" method="post"> 
-             <table>
-                 <tr>
-                    <td><label class="control-label"> User Name: <input type="text" name="username"/></label></td> 
-                 </tr>
-                 <tr>
-                    <td><label class="control-label"> Password: <input type="password" name="password"/> </label></td>
-                 </tr>
-             </table>
-             <table>
-                 <tr>
-                    <td><a href="#" th:href="@{/register}"><button class="btn-primary" type="button">Sign Up</button></a></td>
-                    <td><input class="btn-primary" type="submit" value="Sign In"/></td> 
-                 </tr>
-             </table>
-         </form>
-     </div>
- </body>    
+    <body> 
+        <div style="margin-left:30px;margin-right:30px;">
+            <h1>You're welcome to login</h1>
+            <div th:if="${param.logout}"><p style="color:greenyellow"> You have been logged out.</p> </div>
+            <div th:if="${param.error}" ><p style='color:red'> Invalid username or password.</p> </div> 
+            <form th:action="@{/login}" method="post"> 
+                <table>
+                    <tr>
+                        <td><label class="control-label"> User Name: <input type="text" name="username"/></label></td> 
+                    </tr>
+                    <tr>
+                        <td><label class="control-label"> Password: <input type="password" name="password"/> </label></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td><a href="#" th:href="@{/register}"><button class="btn-primary" type="button">Sign Up</button></a></td>
+                        <td><input class="btn-primary" type="submit" value="Sign In"/></td> 
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>    
 </html>

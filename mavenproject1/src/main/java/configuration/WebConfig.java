@@ -31,85 +31,86 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Configuration
 @EnableWebMvc
 //@EnableTransactionManagement
-@ComponentScan(basePackages={"service"},includeFilters=@ComponentScan.Filter(value = {org.springframework.stereotype.Service.class},type=FilterType.ANNOTATION))
+@ComponentScan(basePackages = {"service"}, includeFilters = @ComponentScan.Filter(value = {org.springframework.stereotype.Service.class}, type = FilterType.ANNOTATION))
 public class WebConfig extends WebMvcConfigurerAdapter {
-     
+
     @Bean
     @Scope("request")
     public LoginController loginController() {
         return new LoginController();
     }
-    
+
     @Bean
     @Scope("session")
     public PlayController managerController() {
         return new PlayController();
     }
-    
+
     @Bean
     @Scope("request")
     public SignUpController signUpController() {
         return new SignUpController();
     }
-    
+
     @Bean
     @Scope("session")
     public SeatController userController() {
         return new SeatController();
     }
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-                configurer.enable();
+        configurer.enable();
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-    
+
     @Bean
-    RequestContextListener requestContextListener(){
+    RequestContextListener requestContextListener() {
         return new RequestContextListener();
     }
-    
+
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-		configurer.favorPathExtension(true)
-			.useJaf(false)
-			.ignoreAcceptHeader(false)
-			.mediaType("html", MediaType.TEXT_HTML)
-			.mediaType("json", MediaType.APPLICATION_JSON)
-			.defaultContentType(MediaType.TEXT_HTML);
+        configurer.favorPathExtension(true)
+                .useJaf(false)
+                .ignoreAcceptHeader(false)
+                .mediaType("html", MediaType.TEXT_HTML)
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .defaultContentType(MediaType.TEXT_HTML);
     }
+
     @Bean
     public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
-		List<ViewResolver> resolvers = new ArrayList<>();
-                ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-                templateResolver.setPrefix("/");
-                templateResolver.setSuffix(".html");
-                templateResolver.setTemplateMode("HTML5");
-                SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-                templateEngine.setTemplateResolver(templateResolver);
-                ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-                viewResolver.setTemplateEngine(templateEngine);
-                resolvers.add(viewResolver);
-		JsonViewResolver jasonResolver = new JsonViewResolver();
-		resolvers.add(jasonResolver);
-		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
-		resolver.setViewResolvers(resolvers);
-		resolver.setContentNegotiationManager(manager);
-	    return resolver; 
+        List<ViewResolver> resolvers = new ArrayList<>();
+        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine);
+        resolvers.add(viewResolver);
+        JsonViewResolver jasonResolver = new JsonViewResolver();
+        resolvers.add(jasonResolver);
+        ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+        resolver.setViewResolvers(resolvers);
+        resolver.setContentNegotiationManager(manager);
+        return resolver;
     }
-    
+
     public class JsonViewResolver implements ViewResolver {
 
         @Override
-	public View resolveViewName(String viewName, Locale locale) throws Exception {
+        public View resolveViewName(String viewName, Locale locale) throws Exception {
             MappingJackson2JsonView view;
             view = new MappingJackson2JsonView();
-            view.setPrettyPrint(true);   
+            view.setPrettyPrint(true);
             return view;
-	}
+        }
     }
 }

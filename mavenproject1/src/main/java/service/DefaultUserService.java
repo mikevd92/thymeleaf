@@ -1,4 +1,4 @@
- package service;
+package service;
 
 import exceptions.AppException;
 import java.util.List;
@@ -26,8 +26,8 @@ public class DefaultUserService implements
 
     @Transactional
     @Override
-    public User loadUserByName(String name){
-        User user=userDAO.findUserByName(name);
+    public User loadUserByName(String name) {
+        User user = userDAO.findUserByName(name);
         return user;
     }
 

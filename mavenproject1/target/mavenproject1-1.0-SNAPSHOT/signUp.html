@@ -17,32 +17,32 @@ and open the template in the editor.
             <h1 >Create a User Account</h1>
             <form method="POST" th:action='@{/register}' th:object="${user}">
                 <table>
-                        <tr>
-                            <td><label class="control-label" for="name">Name:</label></td>
-                            <td><input id="name" th:field="*{name}" /></td>   
-                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-                        </tr>
-                        <tr>
-                            <td><label class="control-label" for="password">Password:</label></td>
-                            <td><input type="password" id="password" th:field="*{password}" /></td>
-                            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
-                        </tr>
-                        <tr>
-                            <td><label class="control-label" for="dateOfBirth">Date of Birth:</label></td>
-                            <td><input id="dateOfBirth" placeholder="MM/DD/YYYY" th:field="*{dateOfBirth}" /></td> 
-                            <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Date Of Birth Error</td>
-                        </tr>
-                        <tr>
-                            <td><label class="control-label" for="address">Address:</label></td>
-                            <td><input id="address" th:field="*{address}" /></td>
-                            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</td>
-                        </tr>
+                    <tr>
+                        <td><label class="control-label" for="name">Name:</label></td>
+                        <td><input id="name" th:field="*{name}" /></td>   
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label" for="password">Password:</label></td>
+                        <td><input type="password" id="password" th:field="*{password}" /></td>
+                        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label" for="dateOfBirth">Date of Birth:</label></td>
+                        <td><input id="dateOfBirth" placeholder="MM/DD/YYYY" th:field="*{dateOfBirth}" /></td> 
+                        <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Date Of Birth Error</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label" for="address">Address:</label></td>
+                        <td><input id="address" th:field="*{address}" /></td>
+                        <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</td>
+                    </tr>
                 </table>
                 <table>
-                        <tr>
-                            <td><a th:href="@{/login}"><button class="btn-primary" type="button">Go to Login</button></a></td>
-                            <td><input class="btn-primary" type="submit" value="Sign Up" /></td>
-                        </tr>
+                    <tr>
+                        <td><a th:href="@{/login}"><button class="btn-primary" type="button">Go to Login</button></a></td>
+                        <td><input class="btn-primary" type="submit" value="Sign Up" /></td>
+                    </tr>
                 </table>
             </form>
         </div>

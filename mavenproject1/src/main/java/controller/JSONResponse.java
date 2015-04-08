@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 /**
@@ -11,13 +10,14 @@ package controller;
  * @author Mihai
  */
 public class JSONResponse {
+
     private String status;
     private String result;
 
-    public JSONResponse(){
-        
+    public JSONResponse() {
+
     }
-    
+
     public JSONResponse(String status, String result) {
         this.status = status;
         this.result = result;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package configuration;
 
 import javax.servlet.Filter;
@@ -25,7 +24,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 //    @Autowired
 //    SessionRegistry sessionRegistry;
-    
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
@@ -33,12 +31,12 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] {ServiceConfig.class,SecurityConfig.class};
+        return new Class<?>[]{ServiceConfig.class, SecurityConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {WebConfig.class,WebSocketConfig.class};
+        return new Class<?>[]{WebConfig.class, WebSocketConfig.class};
     }
 
     @Override
@@ -46,9 +44,9 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
-        HiddenHttpMethodFilter methodFilter=new HiddenHttpMethodFilter();
-        RequestContextFilter requestContextFilter=new RequestContextFilter();
-        return new Filter[] {characterEncodingFilter,methodFilter,requestContextFilter,new DelegatingFilterProxy("springSecurityFilterChain"),new OpenEntityManagerInViewFilter()};
+        HiddenHttpMethodFilter methodFilter = new HiddenHttpMethodFilter();
+        RequestContextFilter requestContextFilter = new RequestContextFilter();
+        return new Filter[]{characterEncodingFilter, methodFilter, requestContextFilter, new DelegatingFilterProxy("springSecurityFilterChain"), new OpenEntityManagerInViewFilter()};
     }
 
     @Override
@@ -58,6 +56,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         registration.setInitParameter("spring.profiles.active", "default");
         registration.setAsyncSupported(true);
     }
+
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.getSessionCookieConfig().setMaxAge(-1);

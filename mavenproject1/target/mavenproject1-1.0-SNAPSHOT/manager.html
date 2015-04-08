@@ -10,10 +10,10 @@ and open the template in the editor.
         <link type="text/css" media="all" href="../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}" rel="stylesheet" />
         <link type="text/css" media="all" href="../../resources/css/bootstrap-theme.css" th:href="@{/resources/css/bootstrap-theme.css}" rel="stylesheet" />
         <link type="text/css" media="all" href="../../resources/css/app.css" th:href="@{/resources/css/app.css}" rel="stylesheet" />
-<!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />-->
+        <!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />-->
         <title>Manager</title>
-<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
-        <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>-->
+        <!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+                <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>-->
         <script src="../../resources/js/sockjs-0.3.min.js" th:src="@{/resources/js/sockjs-0.3.min.js}" />
         <script src="../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}" />
         <script src="../../resources/js/stomp.js" th:src="@{/resources/js/stomp.js}" />
@@ -39,14 +39,14 @@ and open the template in the editor.
                         </tr>
                     </thead>
                     <tbody id="body">
-                            <tr th:each="play : ${plays}" th:id="${play.idPlay}" th:onclick="'javascript:fill(\'' + ${play.idPlay} + '\');'" >
-                                <td style ="display:none" th:text="${play.idPlay}" />
-                                <td th:text="${play.playName}" />
-                                <td th:text="${play.startDate}" />
-                                <td th:text="${play.startTime}" />
-                                <td th:text="${play.endTime}" />
-                                <td th:text="${play.ticketPrice}" />
-                            </tr>
+                        <tr th:each="play : ${plays}" th:id="${play.idPlay}" th:onclick="'javascript:fill(\'' + ${play.idPlay} + '\');'" >
+                            <td style ="display:none" th:text="${play.idPlay}" />
+                            <td th:text="${play.playName}" />
+                            <td th:text="${play.startDate}" />
+                            <td th:text="${play.startTime}" />
+                            <td th:text="${play.endTime}" />
+                            <td th:text="${play.ticketPrice}" />
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -55,37 +55,37 @@ and open the template in the editor.
                 <div id="errorDiv"></div>
                 <form th:object="${play}" >
                     <table style="border-collapse:collapse;">
-                                <tr>
-                                    <td><input type="hidden" id="idPlay" th:field="*{idPlay}" /></td>   
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label" for="playName">Name:</label></td>
-                                    <td><input id="playName" th:field="*{playName}" /></td> 
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label" for="startTime">Start Time:</label></td>
-                                    <td><input id="startTime" th:field="*{startTime}" placeholder="hh:mm:ss"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label" for="endTime">End Time:</label></td>
-                                    <td><input id="endTime" th:field="*{endTime}" placeholder="hh:mm:ss"/></td> 
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label" for="startDate">Start Date:</label></td>
-                                    <td><input id="startDate" th:field="*{startDate}" placeholder="YYYY-MM-DD" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label class="control-label" for="ticketPrice">Ticket Price:</label></td>
-                                    <td><input id="ticketPrice" th:field="*{ticketPrice}" /></td>
-                                </tr>
-                            </table>
+                        <tr>
+                            <td><input type="hidden" id="idPlay" th:field="*{idPlay}" /></td>   
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" for="playName">Name:</label></td>
+                            <td><input id="playName" th:field="*{playName}" /></td> 
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" for="startTime">Start Time:</label></td>
+                            <td><input id="startTime" th:field="*{startTime}" placeholder="hh:mm:ss"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" for="endTime">End Time:</label></td>
+                            <td><input id="endTime" th:field="*{endTime}" placeholder="hh:mm:ss"/></td> 
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" for="startDate">Start Date:</label></td>
+                            <td><input id="startDate" th:field="*{startDate}" placeholder="YYYY-MM-DD" /></td>
+                        </tr>
+                        <tr>
+                            <td><label class="control-label" for="ticketPrice">Ticket Price:</label></td>
+                            <td><input id="ticketPrice" th:field="*{ticketPrice}" /></td>
+                        </tr>
+                    </table>
                 </form>
-                 <table style="border-collapse:collapse;margin-top:12px">
-                            <tr>
-                                <td><input class="btn-primary" type="button" onclick="filter()" value="filter" /></td>
-                                <td><input class="btn-primary" type="button" onclick="undo()" value="undo" /></td>
-                            </tr>
-                 </table>
+                <table style="border-collapse:collapse;margin-top:12px">
+                    <tr>
+                        <td><input class="btn-primary" type="button" onclick="filter()" value="filter" /></td>
+                        <td><input class="btn-primary" type="button" onclick="undo()" value="undo" /></td>
+                    </tr>
+                </table>
             </div>
             <div style="float:left;margin-left:30px;margin-right:30px;float:bottom">
                 <table style="border-collapse:collapse;margin-top:12px">
@@ -98,7 +98,7 @@ and open the template in the editor.
                     <tr>
                         <td><input class="btn-primary" type="button" onclick="rem()" value="Delete" /></td>    
                     </tr>
-                     <tr>
+                    <tr>
                         <td><input class="btn-primary" type="button" onclick="unfill()" value="clear" /></td>
                     </tr>
                 </table>

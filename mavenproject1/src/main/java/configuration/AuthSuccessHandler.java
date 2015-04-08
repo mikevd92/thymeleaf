@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package configuration;
-
 
 import java.io.IOException;
 import java.util.Collection;
@@ -25,34 +23,39 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  *
  * @author Mihai
  */
-    public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+
     protected Log logger = LogFactory.getLog(this.getClass());
- 
+
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
- 
+
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, 
-      HttpServletResponse response, Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+            HttpServletResponse response, Authentication authentication) throws IOException {
         request.getSession().setAttribute("name", authentication.getName());
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
     }
- 
-    protected void handle(HttpServletRequest request, 
-      HttpServletResponse response, Authentication authentication) throws IOException {
+
+    protected void handle(HttpServletRequest request,
+            HttpServletResponse response, Authentication authentication) throws IOException {
         String targetUrl = determineTargetUrl(authentication);
- 
+
         if (response.isCommitted()) {
             logger.debug("Response has already been committed. Unable to redirect to " + targetUrl);
             return;
         }
- 
+
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
- 
-    /** Builds the target URL according to the logic defined in the main class Javadoc.
+
+    /**
+     * Builds the target URL according to the logic defined in the main class
+     * Javadoc.
+     *
      * @param authentication
-     * @return  */
+     * @return
+     */
     protected String determineTargetUrl(Authentication authentication) {
         boolean isUser = false;
         boolean isManager = false;
@@ -68,7 +71,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
                     break OUTER;
             }
         }
- 
+
         if (isUser) {
             return "/seat/list";
         } else if (isManager) {
@@ -77,7 +80,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
             throw new IllegalStateException();
         }
     }
- 
+
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -85,10 +88,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
- 
+
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
         this.redirectStrategy = redirectStrategy;
     }
+
     protected RedirectStrategy getRedirectStrategy() {
         return redirectStrategy;
     }

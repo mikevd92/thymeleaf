@@ -69,18 +69,22 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "idUser")
     private List<Seat> placeList;
     @ManyToMany(fetch = FetchType.EAGER)
-      @JoinTable(
-      name="assoc_role_user",
-      joinColumns={@JoinColumn(name="idUser", referencedColumnName="idUser")},
-      inverseJoinColumns={@JoinColumn(name="idRole", referencedColumnName="idRole")})
+    @JoinTable(
+            name = "assoc_role_user",
+            joinColumns = {
+                @JoinColumn(name = "idUser", referencedColumnName = "idUser")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "idRole", referencedColumnName = "idRole")})
     private List<Role> roles;
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
     public List<Role> getRoles() {
         return roles;
     }
+
     public User() {
     }
 

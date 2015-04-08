@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -26,6 +25,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")})
 public class Role implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -83,5 +83,5 @@ public class Role implements Serializable {
     public String toString() {
         return "model.Role[ idRole=" + idRole + " ]";
     }
-    
+
 }

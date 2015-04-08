@@ -37,7 +37,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@Valid @ModelAttribute("user") User user, BindingResult result) throws AppException {
-        result.getAllErrors().stream().map(p -> p.getDefaultMessage()).reduce((i,j)-> i+"\n"+j);
+        result.getAllErrors().stream().map(p -> p.getDefaultMessage()).reduce((i, j) -> i + "\n" + j);
         if (result.hasErrors()) {
             return "register";
         } else {

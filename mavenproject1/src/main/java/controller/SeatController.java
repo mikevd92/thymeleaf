@@ -42,10 +42,10 @@ public class SeatController implements Serializable {
 
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private Utils utils;
-    
+
     @Autowired
     SimpMessagingTemplate template;
 
@@ -110,17 +110,17 @@ public class SeatController implements Serializable {
     @RequestMapping(value = "/list/cancel/id/{id}/availability/{availability}/name/{name}", method = RequestMethod.PUT, produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.TEXT_HTML_VALUE)
     public @ResponseBody
     String cancel(@PathVariable Integer id, @PathVariable String availability, @PathVariable String name) {
-        String response="";
-        String storedName=userService.getPlaceName(id);
+        String response = "";
+        String storedName = userService.getPlaceName(id);
         try {
             if (storedName.equals(name)) {
                 userService.cancelAvailability(id, availability);
                 response = "{\"notify\":\"succes\",\"id\":\"" + id_play + "\"}";
                 template.convertAndSend("/channel/seats", response);
                 response = "succes";
-            } else if(storedName.equals("")){
+            } else if (storedName.equals("")) {
                 response = "Seat not reserved!";
-            } else if(!storedName.equals(name)){
+            } else if (!storedName.equals(name)) {
                 response = "Not your seat!";
             }
         } catch (AppException | MessagingException e) {
@@ -134,10 +134,10 @@ public class SeatController implements Serializable {
     String hide() {
         return "";
     }
-    
+
     @ExceptionHandler(HttpSessionRequiredException.class)
-    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason="The session has expired")	
-    public String handleSessionExpired(){		
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "The session has expired")
+    public String handleSessionExpired() {
         return "sessionExpired";
     }
 }

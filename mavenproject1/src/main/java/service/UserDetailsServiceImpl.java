@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package service;
 
 import model.SecurityUser;
@@ -24,15 +23,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;
-    
+
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-       User user=userService.loadUserByName(name);
-       if(user == null){
-           throw new UsernameNotFoundException("UserName "+name+" not found");
-       }
-       return new SecurityUser(user);
+        User user = userService.loadUserByName(name);
+        if (user == null) {
+            throw new UsernameNotFoundException("UserName " + name + " not found");
+        }
+        return new SecurityUser(user);
     }
-    
+
 }

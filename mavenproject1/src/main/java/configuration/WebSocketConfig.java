@@ -18,25 +18,24 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 @EnableWebSocketMessageBroker
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/end").withSockJS();
+    }
 
-	@Override
-	public void registerStompEndpoints(StompEndpointRegistry registry) {     
-                registry.addEndpoint("/end").withSockJS();
-	}
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+    }
 
-	@Override
-	public void configureClientInboundChannel(ChannelRegistration registration) {
-	}
+    @Override
+    public void configureClientOutboundChannel(ChannelRegistration registration) {
+        registration.taskExecutor().corePoolSize(100).maxPoolSize(100);
+    }
 
-	@Override
-	public void configureClientOutboundChannel(ChannelRegistration registration) {
-		registration.taskExecutor().corePoolSize(100).maxPoolSize(100);
-	}
-
-	@Override
-	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		registry.enableSimpleBroker("/channel/");
-		registry.setApplicationDestinationPrefixes("/user");
-	}
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/channel/");
+        registry.setApplicationDestinationPrefixes("/user");
+    }
 
 }

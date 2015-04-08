@@ -50,7 +50,7 @@ public class Play implements Serializable {
     @Column(name = "endTime")
     private Time endTime;
     @Size(max = 45)
-    @Column(name = "playName", length = 45) 
+    @Column(name = "playName", length = 45)
     private String playName;
     @Column(name = "startDate")
     @Future
@@ -59,7 +59,7 @@ public class Play implements Serializable {
     private Time startTime;
     @Basic(optional = false)
     @Column(name = "ticketPrice", nullable = false)
-    @Digits(integer=6,fraction=0)
+    @Digits(integer = 6, fraction = 0)
     private int ticketPrice;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idPlay")
     private List<Seat> seats;

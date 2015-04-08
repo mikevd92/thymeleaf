@@ -8,9 +8,9 @@ var socket = new SockJS('/mavenproject1/end');
 var stompClient = Stomp.over(socket);
 var root = "http://localhost:8084/mavenproject1/";
 
-stompClient.connect({}, function(frame) {
+stompClient.connect({}, function (frame) {
     console.log('Connected First client: ' + frame);
-    stompClient.subscribe('/channel/plays', function(message) {
+    stompClient.subscribe('/channel/plays', function (message) {
         var content = JSON.parse(message.body);
         content = JSON.parse(content);
         try {
@@ -26,22 +26,22 @@ stompClient.connect({}, function(frame) {
                 }
             }
         } catch (e) {
-            console.log("Socket Error Client 1"+e);
+            console.log("Socket Error Client 1" + e);
         }
     });
 });
 var secondSocket = new SockJS('/mavenproject1/end');
 var stompSecondClient = Stomp.over(secondSocket);
-stompSecondClient.connect({}, function(frame) {
+stompSecondClient.connect({}, function (frame) {
     console.log('Connected Second client: ' + frame);
-    stompSecondClient.subscribe('/channel/seats', function(message) {
+    stompSecondClient.subscribe('/channel/seats', function (message) {
         var content = JSON.parse(message.body);
         content = JSON.parse(content);
         try {
             if (content.notify === 'succes') {
-                if (parseInt(content.id) == id_play){
+                if (parseInt(content.id) == id_play) {
                     refresh();
-                }     
+                }
             }
         } catch (e) {
             console.log("Socket Error Client 2" + e);
@@ -52,21 +52,21 @@ stompSecondClient.connect({}, function(frame) {
 function refreshPlays() {
     $.ajax({
         type: "POST",
-        url: root+"play/list/refresh",
+        url: root + "play/list/refresh",
         data: "",
         headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
             if (response.indexOf('Exception:') === 0)
                 alert(response);
             else {
                 $('#playDiv').html(response);
-                normFill();   
+                normFill();
             }
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Ajax: ' + e);
         }
     });
@@ -99,13 +99,13 @@ function fill(id) {
     if ($('#placeDiv').length > 0) {
         $.ajax({
             type: "PUT",
-            url: root+"seat/list/id/" + id + "",
+            url: root + "seat/list/id/" + id + "",
             data: "",
             headers: {
                 'Accept': 'text/html',
                 'Content-Type': 'text/html'
             },
-            success: function(response) {
+            success: function (response) {
                 // we have the response
                 if (response.indexOf('Exception:') === 0)
                     alert(response);
@@ -114,7 +114,7 @@ function fill(id) {
                     $('#overDiv').css("visibility", "visible");
                     $('#placeDiv').html(response);
                 }
-            }, error: function(e) {
+            }, error: function (e) {
                 console.log('Error Fill: ' + e);
             }
         });
@@ -186,22 +186,22 @@ function filter() {
     json = json.concat("}");
     $.ajax({
         type: "POST",
-        url: root+"play/list/filter",
+        url: root + "play/list/filter",
         data: json,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
-            if(response.status==="error"){
+            if (response.status === "error") {
                 if (response.result.indexOf('Exception:') === 0)
                     alert(response.result);
                 else if (response.result === 'No such elements!')
                     alert(response.result);
                 else
                     $('#errorDiv').html(response.result);
-            }else {
+            } else {
                 $('#playDiv').html(response.result);
                 //if(idPlay===id_play)
                 var table = document.getElementById('playTable');
@@ -212,7 +212,7 @@ function filter() {
                 }
                 //unfill();
             }
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Filter: ' + e);
         }
     });
@@ -227,24 +227,24 @@ function add() {
     var json = {"playName": playName, "startDate": startDate, "startTime": startTime, "endTime": endTime, "ticketPrice": ticketPrice};
     $.ajax({
         type: "POST",
-        url: root+"play/list",
+        url: root + "play/list",
         data: JSON.stringify(json),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
-            if(response.status==="error"){       
-                if (response.result.indexOf('Exception:') === 0){
+            if (response.status === "error") {
+                if (response.result.indexOf('Exception:') === 0) {
                     alert(response);
-                }else{
+                } else {
                     $('#errorDiv').html(response.result);
                 }
             }
-            
+
             //unfill();
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Add: ' + e);
         }
     });
@@ -255,13 +255,13 @@ function refresh() {
     if (id !== -1) {
         $.ajax({
             type: "PUT",
-            url: root+"seat/list/id/" + id + "",
+            url: root + "seat/list/id/" + id + "",
             data: "",
             headers: {
                 'Accept': 'text/html',
                 'Content-Type': 'text/html'
             },
-            success: function(response) {
+            success: function (response) {
                 // we have the response
                 if (response.indexOf('Exception:') === 0)
                     alert(response);
@@ -270,7 +270,7 @@ function refresh() {
                     $('#overDiv').css("visibility", "visible");
                     $('#placeDiv').html(response);
                 }
-            }, error: function(e) {
+            }, error: function (e) {
                 console.log('Error Refresh: ' + e);
             }
         });
@@ -283,19 +283,19 @@ function reserve(id, availability) {
     var available = availability;
     $.ajax({
         type: "PUT",
-        url: root+"seat/list/id/" + id_place + "/availability/" + available + "/name/" + name,
+        url: root + "seat/list/id/" + id_place + "/availability/" + available + "/name/" + name,
         data: "",
         headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
             if (response.indexOf('Exception:') === 0)
                 alert(response);
             else if (response === 'Seat already reserved!')
                 alert(response);
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Reserve: ' + e);
         }
     });
@@ -309,13 +309,13 @@ function cancel(id, availability) {
     var available = availability;
     $.ajax({
         type: "PUT",
-        url: root+"seat/list/cancel/id/" + id_place + "/availability/" + available + "/name/" + name,
+        url: root + "seat/list/cancel/id/" + id_place + "/availability/" + available + "/name/" + name,
         data: "",
         headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
             if (response.indexOf('Exception:') === 0)
                 alert(response);
@@ -323,7 +323,7 @@ function cancel(id, availability) {
                 alert(response);
             else if (response === 'Seat not reserved!')
                 alert(response);
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Cancel: ' + e);
         }
     });
@@ -334,13 +334,13 @@ function hide() {
     // get the form values
     $.ajax({
         type: "POST",
-        url: root+"seat/list/hide",
+        url: root + "seat/list/hide",
         data: "",
         headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
             if (response.indexOf('Exception:') === 0)
                 alert(response);
@@ -349,7 +349,7 @@ function hide() {
                 $('#overDiv').css("visibility", "hidden");
                 $('#placeDiv').html(response);
             }
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error hide: ' + e);
         }
     });
@@ -405,22 +405,22 @@ function edit() {
     json = json.concat("}");
     $.ajax({
         type: "PUT",
-        url: root+"play/list",
+        url: root + "play/list",
         data: json,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
-            if(response.status==="error"){
+            if (response.status === "error") {
                 if (response.result.indexOf('Exception:') === 0)
                     alert(response);
                 else
                     $('#errorDiv').html(response.result);
             }
             // unfill();
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Filter: ' + e);
         }
     });
@@ -433,22 +433,22 @@ function rem() {
     var json = {"idPlay": id};
     $.ajax({
         type: "DELETE",
-        url: root+"play/list",
+        url: root + "play/list",
         data: JSON.stringify(json),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
-            if(response.status==="error"){
+            if (response.status === "error") {
                 if (response.indexOf('Exception:') === 0)
                     alert(response);
                 else
                     $('#errorDiv').html(response.result);
             }
             unfill();
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Remove: ' + e);
         }
     });
@@ -458,26 +458,26 @@ function undo() {
     // get the form values
     $.ajax({
         type: "POST",
-        url: root+"play/list/undo",
+        url: root + "play/list/undo",
         data: "",
         headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
         },
-        success: function(response) {
+        success: function (response) {
             // we have the response
             if (response.indexOf('Exception:') === 0)
                 alert(response);
             else
                 $('#playDiv').html(response);
             //unfill();
-        }, error: function(e) {
+        }, error: function (e) {
             console.log('Error Undo: ' + e);
         }
     });
 }
 function signOut() {
     disconnect();
-    var url = root+"logout";
+    var url = root + "logout";
     $(location).attr('href', url);
 }

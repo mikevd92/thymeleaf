@@ -39,7 +39,7 @@ public class JpaSeatDAO extends JpaDAO<Seat, Integer> implements SeatDAO {
     @Override
     @Transactional
     public void addSeats(int amount, Play play) throws AppException {
-       List<Seat> seats = IntStream.range(1, amount + 1).<Seat>mapToObj(p -> {
+        List<Seat> seats = IntStream.range(1, amount + 1).<Seat>mapToObj(p -> {
             Seat place = null;
             try {
                 place = new Seat(play, p, "available");

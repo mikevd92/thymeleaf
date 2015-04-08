@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.util.List;
 import model.Play;
 
-public interface PlayDAO extends Serializable{
+public interface PlayDAO extends Serializable {
 
     public void addPlay(Play play) throws AppException;
 
