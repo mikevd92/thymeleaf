@@ -15,4 +15,7 @@ public abstract class Seat_ {
     public static volatile SingularAttribute<Seat, User> user;
     public static volatile SingularAttribute<Seat, String> availability;
 
+    private Seat_() {
+    }
+
 }

@@ -19,4 +19,7 @@ public abstract class Play_ {
     public static volatile SingularAttribute<Play, String> playName;
     public static volatile SingularAttribute<Play, Time> endTime;
 
+    private Play_() {
+    }
+
 }

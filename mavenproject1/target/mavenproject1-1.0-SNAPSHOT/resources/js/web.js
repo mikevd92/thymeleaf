@@ -35,9 +35,12 @@ stompSecondClient.connect({}, function (frame) {
     console.log('Connected Second client: ' + frame);
     stompSecondClient.subscribe('/channel/seats', function (message) {
         var content = JSON.parse(message.body);
+        console.log(content);
         try {
             if (content.notify === 'succes') {
-                if (parseInt(content.id) === id_play) {
+                console.log(parseInt(content.id));
+                console.log(id_play);
+                if (parseInt(content.id) == id_play) {
                     refresh();
                 }
             }
@@ -68,6 +71,32 @@ function refreshPlays() {
             console.log('Error Ajax: ' + e);
         }
     });
+}
+function refresh() {
+    var id = window.id_play;
+    if (id !== -1) {
+        $.ajax({
+            type: "PUT",
+            url: root + "seat/list/id/" + id + "",
+            data: "",
+            headers: {
+                'Accept': 'text/html',
+                'Content-Type': 'text/html'
+            },
+            success: function (response) {
+                // we have the response
+                if (response.indexOf('Exception:') === 0)
+                    alert(response);
+                else {
+                    $('#seatHeader').css("visibility", "visible");
+                    $('#overDiv').css("visibility", "visible");
+                    $('#placeDiv').html(response);
+                }
+            }, error: function (e) {
+                console.log('Error Refresh: ' + e);
+            }
+        });
+    }
 }
 function disconnect() {
     stompClient.disconnect();
@@ -248,32 +277,7 @@ function add() {
     });
     //stompAddClient.send("/manager/add",{},JSON.stringify(json));
 }
-function refresh() {
-    var id = window.id_play;
-    if (id !== -1) {
-        $.ajax({
-            type: "PUT",
-            url: root + "seat/list/id/" + id + "",
-            data: "",
-            headers: {
-                'Accept': 'text/html',
-                'Content-Type': 'text/html'
-            },
-            success: function (response) {
-                // we have the response
-                if (response.indexOf('Exception:') === 0)
-                    alert(response);
-                else {
-                    $('#seatHeader').css("visibility", "visible");
-                    $('#overDiv').css("visibility", "visible");
-                    $('#placeDiv').html(response);
-                }
-            }, error: function (e) {
-                console.log('Error Refresh: ' + e);
-            }
-        });
-    }
-}
+
 function reserve(id, availability) {
     // get the form values
     var name = $('#user').html();

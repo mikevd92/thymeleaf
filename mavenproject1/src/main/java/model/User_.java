@@ -18,4 +18,7 @@ public abstract class User_ {
     public static volatile ListAttribute<User, Role> roles;
     public static volatile SingularAttribute<User, String> password;
     public static volatile SingularAttribute<User, Boolean> role;
+
+    private User_() {
+    }
 }
