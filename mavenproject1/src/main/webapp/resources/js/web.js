@@ -12,7 +12,6 @@ stompClient.connect({}, function (frame) {
     console.log('Connected First client: ' + frame);
     stompClient.subscribe('/channel/plays', function (message) {
         var content = JSON.parse(message.body);
-        content = JSON.parse(content);
         try {
             if (content.notify === 'succes') {
                 refreshPlays();
@@ -36,7 +35,6 @@ stompSecondClient.connect({}, function (frame) {
     console.log('Connected Second client: ' + frame);
     stompSecondClient.subscribe('/channel/seats', function (message) {
         var content = JSON.parse(message.body);
-        content = JSON.parse(content);
         try {
             if (content.notify === 'succes') {
                 if (parseInt(content.id) === id_play) {
