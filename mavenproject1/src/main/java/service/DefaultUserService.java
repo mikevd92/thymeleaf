@@ -98,7 +98,7 @@ public class DefaultUserService implements
     public void changeAvailability(int index, String availability, String name)
             throws AppException {
         availability = "unavailable";
-        User user = this.userDAO.findUserByName(name);
+        User user = (User) this.userDAO.findUserByName(name);
         this.userSeatDAO.changeAvailability(index, availability, user);
     }
 

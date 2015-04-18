@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -83,7 +82,7 @@ public class User implements Serializable {
     }
 
     public List<Role> getRoles() {
-        return Collections.unmodifiableList(roles);
+        return roles;
     }
 
     public User() {
@@ -138,7 +137,7 @@ public class User implements Serializable {
     }
 
     public List<Seat> getPlaceList() {
-        return Collections.unmodifiableList(placeList);
+        return placeList;
     }
 
     public void setPlaceList(List<Seat> placeList) {
