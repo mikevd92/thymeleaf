@@ -45,8 +45,8 @@ public class UtilsImpl implements Utils {
                     + "                    </tr>\n"
                     + "                </thead>\n"
                     + "                <tbody>\n";
-            body = body + opt.get();
-            body = body + "                </tbody>\n            </table>";
+            body += opt.get();
+            body += "                </tbody>\n            </table>";
         }
         return body;
     }
@@ -76,8 +76,8 @@ public class UtilsImpl implements Utils {
                     + "                    </tr>\n"
                     + "                </thead>\n"
                     + "                <tbody>\n";
-            body = body + opt.get();
-            body = body + "                </tbody>\n            </table>";
+            body += opt.get();
+            body += "                </tbody>\n            </table>";
         }
         return body;
     }

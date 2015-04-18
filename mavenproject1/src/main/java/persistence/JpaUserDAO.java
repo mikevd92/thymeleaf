@@ -36,7 +36,7 @@ public class JpaUserDAO extends JpaDAO<User, Integer> implements UserDAO {
             );
             cq.select(user);
             TypedQuery<User> q = entityManager.createQuery(cq);
-            return (model.User) q.getSingleResult();
+            return q.getSingleResult();
         } catch (Exception ex) {
             throw new AppException("DB Exception: " + ex.getMessage());
         }
@@ -53,7 +53,7 @@ public class JpaUserDAO extends JpaDAO<User, Integer> implements UserDAO {
             cq.where(cb.equal(user.get(User_.name), name));
             cq.select(user);
             TypedQuery<User> q = entityManager.createQuery(cq);
-            return (model.User) q.getSingleResult();
+            return q.getSingleResult();
         } catch (Exception ex) {
             throw new AppException("DB Exception: " + ex.getMessage());
         }
