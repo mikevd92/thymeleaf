@@ -18,7 +18,7 @@ stompClient.connect({}, function (frame) {
                 fill(id_play);
             } else if (content.notify === 'delete') {
                 refreshPlays();
-                if (parseInt(content.id) === id_play) {
+                if (parseInt(content.id) == id_play) {
                     hide();
                 } else {
                     refresh();
