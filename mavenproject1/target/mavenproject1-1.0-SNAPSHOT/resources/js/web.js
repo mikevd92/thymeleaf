@@ -35,7 +35,6 @@ stompSecondClient.connect({}, function (frame) {
     console.log('Connected Second client: ' + frame);
     stompSecondClient.subscribe('/channel/seats', function (message) {
         var content = JSON.parse(message.body);
-        console.log(content);
         try {
             if (content.notify === 'succes') {
                 console.log(parseInt(content.id));
