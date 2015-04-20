@@ -44,7 +44,7 @@ public class UtilsImpl implements Utils {
                     + "			<th>Price</th>\n"
                     + "                    </tr>\n"
                     + "                </thead>\n"
-                    + "                <tbody id=\"body\">\n";
+                    + "                <tbody>\n";
             body += opt.get();
             body += "                </tbody>\n            </table>";
         }

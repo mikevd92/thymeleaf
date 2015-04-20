@@ -105,10 +105,6 @@ function disconnect() {
 function normFill() {
     var selector = '#';
     selector = selector.concat(id_play);
-    $('#body tr').click(function(e) {
-                $('#body tr').removeClass('highlighted');
-                $(this).addClass('highlighted');
-    });
     $('#idPlay').val($(selector).find("td").eq(0).html());
     $('#playName').val($(selector).find("td").eq(1).html());
     $('#startDate').val($(selector).find("td").eq(2).html());
@@ -125,10 +121,6 @@ function fill(id) {
     $('#startTime').val($(selector).find("td").eq(3).html());
     $('#endTime').val($(selector).find("td").eq(4).html());
     $('#ticketPrice').val($(selector).find("td").eq(5).html());
-    $('#body tr').click(function(e) {
-                $('#body tr').removeClass('highlighted');
-                $(this).addClass('highlighted');
-            });
     window.id_play = id;
     if ($('#placeDiv').length > 0) {
         $.ajax({
@@ -239,10 +231,6 @@ function filter() {
                 $('#playDiv').html(response.result);
                 //if(idPlay===id_play)
                 var table = document.getElementById('playTable');
-                $('#body tr').click(function(e) {
-                $('#body tr').removeClass('highlighted');
-                $(this).addClass('highlighted');
-                });
                 if (table !== null) {
                     var nrRows = table.rows.length;
                     if (nrRows > 2)
