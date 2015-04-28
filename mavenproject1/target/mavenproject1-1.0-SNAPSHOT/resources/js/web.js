@@ -15,10 +15,12 @@ stompClient.connect({}, function (frame) {
         try {
             if (content.notify === 'succes') {
                 refreshPlays();
-                fill(id_play);
+                if (parseInt(content.id) == id_play){
+                    fill(id_play);
+                }
             } else if (content.notify === 'delete') {
                 refreshPlays();
-                if (parseInt(content.id) == id_play) {
+                if (parseInt(content.id) == id_play) { 
                     hide();
                 } else {
                     refresh();
@@ -37,8 +39,6 @@ stompSecondClient.connect({}, function (frame) {
         var content = JSON.parse(message.body);
         try {
             if (content.notify === 'succes') {
-                console.log(parseInt(content.id));
-                console.log(id_play);
                 if (parseInt(content.id) == id_play) {
                     refresh();
                 }
