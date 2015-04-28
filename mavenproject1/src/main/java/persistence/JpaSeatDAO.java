@@ -40,14 +40,14 @@ public class JpaSeatDAO extends JpaDAO<Seat, Integer> implements SeatDAO {
     @Transactional
     public void addSeats(int amount, Play play) throws AppException {
         List<Seat> seats = IntStream.range(1, amount + 1).<Seat>mapToObj(p -> {
-            Seat place = null;
+            Seat seat = null;
             try {
-                place = new Seat(play, p, "available");
-                this.save(place);
+                seat = new Seat(play, p, "available");
+                this.save(seat);
             } catch (AppException e) {
                 throw new AppException("Exception : An Error Occured");
             }
-            return place;
+            return seat;
         }).collect(Collectors.toList());
         play.setSeatList(seats);
     }
