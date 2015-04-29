@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import persistence.SeatDAO;
 import persistence.PlayDAO;
 import persistence.UserDAO;
+import persistence.RoleDAO;
 
 @Service("userService")
 public class DefaultUserService implements
@@ -23,7 +24,8 @@ public class DefaultUserService implements
     private PlayDAO userPlayDAO;
     @Autowired
     private SeatDAO userSeatDAO;
-
+    @Autowired
+    private RoleDAO roleDAO;
     @Transactional
     @Override
     public User loadUserByName(String name) {
@@ -35,6 +37,7 @@ public class DefaultUserService implements
     @Override
     public void addUser(User user) throws AppException {
         userDAO.createUser(user);
+        roleDAO.addRole(user);
     }
 
     @Transactional
