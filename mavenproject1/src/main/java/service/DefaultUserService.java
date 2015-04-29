@@ -78,7 +78,10 @@ public class DefaultUserService implements
     @Transactional
     @Override
     public Seat getPlace(int index) throws AppException {
-        Seat place = Optional.ofNullable(userSeatDAO.findById(index)).orElseThrow(() -> new AppException("No such Element"));
+        Seat place;
+        place = Optional.ofNullable(userSeatDAO.findById(index)).orElseThrow(() -> {
+            return new AppException("No such Element");
+        });
         return place;
     }
 
